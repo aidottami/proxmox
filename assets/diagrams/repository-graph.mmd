@@ -1,0 +1,172 @@
+flowchart LR
+
+    classDef provider fill:#dff5e1,stroke:#277a35;
+    classDef operator fill:#fff0d6,stroke:#a56200;
+    classDef library fill:#e5edff,stroke:#3157a4;
+    classDef tooling fill:#efe4ff,stroke:#7041a6;
+    classDef documentation fill:#f2f2f2,stroke:#666;
+    classDef standard fill:#ffe6ee,stroke:#a43c61;
+    classDef template fill:#e4f7f7,stroke:#2f7777;
+    classDef test fill:#fff9d8,stroke:#8a7a00;
+    classDef directory fill:#ffffff,stroke:#999,stroke-dasharray: 3 3;
+    classDef file fill:#ffffff,stroke:#999;
+
+    node_gitignore[".gitignore"]
+    class node_gitignore file;
+    node_README_md["README.md"]
+    class node_README_md documentation;
+    node_VERSION["VERSION"]
+    class node_VERSION file;
+    node_ansible_README_md["ansible/README.md"]
+    class node_ansible_README_md documentation;
+    node_ansible_inventory_gitkeep["ansible/inventory/.gitkeep"]
+    class node_ansible_inventory_gitkeep file;
+    node_ansible_playbooks_gitkeep["ansible/playbooks/.gitkeep"]
+    class node_ansible_playbooks_gitkeep file;
+    node_ansible_roles_gitkeep["ansible/roles/.gitkeep"]
+    class node_ansible_roles_gitkeep file;
+    node_assets_README_md["assets/README.md"]
+    class node_assets_README_md documentation;
+    node_assets_diagrams_README_md["assets/diagrams/README.md"]
+    class node_assets_diagrams_README_md documentation;
+    node_assets_drawio_README_md["assets/drawio/README.md"]
+    class node_assets_drawio_README_md documentation;
+    node_assets_images_README_md["assets/images/README.md"]
+    class node_assets_images_README_md documentation;
+    node_assets_logo_README_md["assets/logo/README.md"]
+    class node_assets_logo_README_md documentation;
+    node_docs_README_md["docs/README.md"]
+    class node_docs_README_md documentation;
+    node_docs_architecture_README_md["docs/architecture/README.md"]
+    class node_docs_architecture_README_md documentation;
+    node_docs_architecture_repository_graph_md["docs/architecture/repository-graph.md"]
+    class node_docs_architecture_repository_graph_md documentation;
+    node_docs_benchmarks_README_md["docs/benchmarks/README.md"]
+    class node_docs_benchmarks_README_md documentation;
+    node_docs_best_practices_README_md["docs/best-practices/README.md"]
+    class node_docs_best_practices_README_md documentation;
+    node_docs_howto_README_md["docs/howto/README.md"]
+    class node_docs_howto_README_md documentation;
+    node_docs_howto_windows_ide_sata_to_scsi_md["docs/howto/windows-ide-sata-to-scsi.md"]
+    class node_docs_howto_windows_ide_sata_to_scsi_md documentation;
+    node_docs_notes_README_md["docs/notes/README.md"]
+    class node_docs_notes_README_md documentation;
+    node_docs_troubleshooting_README_md["docs/troubleshooting/README.md"]
+    class node_docs_troubleshooting_README_md documentation;
+    node_examples_README_md["examples/README.md"]
+    class node_examples_README_md documentation;
+    node_hooks_README_md["hooks/README.md"]
+    class node_hooks_README_md documentation;
+    node_scripts_README_md["scripts/README.md"]
+    class node_scripts_README_md documentation;
+    node_scripts_audit_README_md["scripts/audit/README.md"]
+    class node_scripts_audit_README_md documentation;
+    node_scripts_audit_pve_backup_audit_sh["scripts/audit/pve-backup-audit.sh"]
+    class node_scripts_audit_pve_backup_audit_sh provider;
+    node_scripts_audit_pve_host_audit_sh["scripts/audit/pve-host-audit.sh"]
+    class node_scripts_audit_pve_host_audit_sh provider;
+    node_scripts_audit_pve_network_audit_sh["scripts/audit/pve-network-audit.sh"]
+    class node_scripts_audit_pve_network_audit_sh provider;
+    node_scripts_audit_pve_storage_audit_sh["scripts/audit/pve-storage-audit.sh"]
+    class node_scripts_audit_pve_storage_audit_sh provider;
+    node_scripts_audit_pve_vm_audit_sh["scripts/audit/pve-vm-audit.sh"]
+    class node_scripts_audit_pve_vm_audit_sh provider;
+    node_scripts_backup_README_md["scripts/backup/README.md"]
+    class node_scripts_backup_README_md documentation;
+    node_scripts_bin_check_sh["scripts/bin/check.sh"]
+    class node_scripts_bin_check_sh tooling;
+    node_scripts_bin_format_all_sh["scripts/bin/format-all.sh"]
+    class node_scripts_bin_format_all_sh tooling;
+    node_scripts_bin_init_gitkeep_sh["scripts/bin/init-gitkeep.sh"]
+    class node_scripts_bin_init_gitkeep_sh tooling;
+    node_scripts_bin_init_readme_sh["scripts/bin/init-readme.sh"]
+    class node_scripts_bin_init_readme_sh tooling;
+    node_scripts_bin_repo_graph_py["scripts/bin/repo-graph.py"]
+    class node_scripts_bin_repo_graph_py tooling;
+    node_scripts_fail2ban_README_md["scripts/fail2ban/README.md"]
+    class node_scripts_fail2ban_README_md documentation;
+    node_scripts_kernel_README_md["scripts/kernel/README.md"]
+    class node_scripts_kernel_README_md documentation;
+    node_scripts_lib_README_md["scripts/lib/README.md"]
+    class node_scripts_lib_README_md documentation;
+    node_scripts_lib_colors_sh["scripts/lib/colors.sh"]
+    class node_scripts_lib_colors_sh library;
+    node_scripts_lib_common_sh["scripts/lib/common.sh"]
+    class node_scripts_lib_common_sh library;
+    node_scripts_lib_logging_sh["scripts/lib/logging.sh"]
+    class node_scripts_lib_logging_sh library;
+    node_scripts_lib_output_sh["scripts/lib/output.sh"]
+    class node_scripts_lib_output_sh library;
+    node_scripts_lib_validation_sh["scripts/lib/validation.sh"]
+    class node_scripts_lib_validation_sh library;
+    node_scripts_maintenance_README_md["scripts/maintenance/README.md"]
+    class node_scripts_maintenance_README_md documentation;
+    node_scripts_migration_README_md["scripts/migration/README.md"]
+    class node_scripts_migration_README_md documentation;
+    node_scripts_network_README_md["scripts/network/README.md"]
+    class node_scripts_network_README_md documentation;
+    node_scripts_proxmox_README_md["scripts/proxmox/README.md"]
+    class node_scripts_proxmox_README_md documentation;
+    node_scripts_ssh_README_md["scripts/ssh/README.md"]
+    class node_scripts_ssh_README_md documentation;
+    node_scripts_storage_README_md["scripts/storage/README.md"]
+    class node_scripts_storage_README_md documentation;
+    node_scripts_tests_README_md["scripts/tests/README.md"]
+    class node_scripts_tests_README_md documentation;
+    node_scripts_tests_fixtures_README_md["scripts/tests/fixtures/README.md"]
+    class node_scripts_tests_fixtures_README_md documentation;
+    node_scripts_vm_README_md["scripts/vm/README.md"]
+    class node_scripts_vm_README_md documentation;
+    node_scripts_wireguard_README_md["scripts/wireguard/README.md"]
+    class node_scripts_wireguard_README_md documentation;
+    node_standards_README_md["standards/README.md"]
+    class node_standards_README_md standard;
+    node_standards_bash_style_md["standards/bash-style.md"]
+    class node_standards_bash_style_md standard;
+    node_standards_commit_style_md["standards/commit-style.md"]
+    class node_standards_commit_style_md standard;
+    node_standards_output_style_md["standards/output-style.md"]
+    class node_standards_output_style_md standard;
+    node_standards_script_template_sh["standards/script-template.sh"]
+    class node_standards_script_template_sh file;
+    node_templates_README_md["templates/README.md"]
+    class node_templates_README_md documentation;
+    node_templates_cloud_init_README_md["templates/cloud-init/README.md"]
+    class node_templates_cloud_init_README_md documentation;
+    node_templates_hooks_README_md["templates/hooks/README.md"]
+    class node_templates_hooks_README_md documentation;
+    node_templates_snippets_README_md["templates/snippets/README.md"]
+    class node_templates_snippets_README_md documentation;
+    node_templates_vm_README_md["templates/vm/README.md"]
+    class node_templates_vm_README_md documentation;
+
+    node_README_md -->|links to| node_docs_howto_windows_ide_sata_to_scsi_md
+    node_scripts_audit_pve_backup_audit_sh -->|uses| node_scripts_lib_colors_sh
+    node_scripts_audit_pve_backup_audit_sh -->|uses| node_scripts_lib_common_sh
+    node_scripts_audit_pve_backup_audit_sh -->|uses| node_scripts_lib_logging_sh
+    node_scripts_audit_pve_backup_audit_sh -->|uses| node_scripts_lib_output_sh
+    node_scripts_audit_pve_backup_audit_sh -->|uses| node_scripts_lib_validation_sh
+    node_scripts_audit_pve_host_audit_sh -->|uses| node_scripts_lib_colors_sh
+    node_scripts_audit_pve_host_audit_sh -->|uses| node_scripts_lib_common_sh
+    node_scripts_audit_pve_host_audit_sh -->|uses| node_scripts_lib_logging_sh
+    node_scripts_audit_pve_host_audit_sh -->|uses| node_scripts_lib_output_sh
+    node_scripts_audit_pve_host_audit_sh -->|uses| node_scripts_lib_validation_sh
+    node_scripts_audit_pve_network_audit_sh -->|uses| node_scripts_lib_colors_sh
+    node_scripts_audit_pve_network_audit_sh -->|uses| node_scripts_lib_common_sh
+    node_scripts_audit_pve_network_audit_sh -->|uses| node_scripts_lib_logging_sh
+    node_scripts_audit_pve_network_audit_sh -->|uses| node_scripts_lib_output_sh
+    node_scripts_audit_pve_network_audit_sh -->|uses| node_scripts_lib_validation_sh
+    node_scripts_audit_pve_storage_audit_sh -->|uses| node_scripts_lib_colors_sh
+    node_scripts_audit_pve_storage_audit_sh -->|uses| node_scripts_lib_common_sh
+    node_scripts_audit_pve_storage_audit_sh -->|uses| node_scripts_lib_logging_sh
+    node_scripts_audit_pve_storage_audit_sh -->|uses| node_scripts_lib_output_sh
+    node_scripts_audit_pve_storage_audit_sh -->|uses| node_scripts_lib_validation_sh
+    node_scripts_audit_pve_vm_audit_sh -->|uses| node_scripts_lib_colors_sh
+    node_scripts_audit_pve_vm_audit_sh -->|uses| node_scripts_lib_common_sh
+    node_scripts_audit_pve_vm_audit_sh -->|uses| node_scripts_lib_logging_sh
+    node_scripts_audit_pve_vm_audit_sh -->|uses| node_scripts_lib_output_sh
+    node_scripts_audit_pve_vm_audit_sh -->|uses| node_scripts_lib_validation_sh
+    node_standards_script_template_sh -->|uses| node_scripts_lib_colors_sh
+    node_standards_script_template_sh -->|uses| node_scripts_lib_logging_sh
+    node_standards_script_template_sh -->|uses| node_scripts_lib_output_sh
+    node_standards_script_template_sh -->|uses| node_scripts_lib_validation_sh

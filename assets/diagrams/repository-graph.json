@@ -1,0 +1,684 @@
+{
+  "schema_version": "1.0",
+  "repository": "proxmox",
+  "root": "/Users/luca/github/proxmox",
+  "summary": {
+    "nodes": 64,
+    "edges": 30,
+    "node_kinds": {
+      "documentation": 39,
+      "file": 5,
+      "library": 5,
+      "provider": 5,
+      "shell-script": 1,
+      "standard": 4,
+      "tooling": 5
+    }
+  },
+  "nodes": [
+    {
+      "id": "node_gitignore",
+      "path": ".gitignore",
+      "name": ".gitignore",
+      "kind": "file",
+      "category": ".gitignore",
+      "extension": null
+    },
+    {
+      "id": "node_README_md",
+      "path": "README.md",
+      "name": "README.md",
+      "kind": "documentation",
+      "category": "README.md",
+      "extension": ".md"
+    },
+    {
+      "id": "node_VERSION",
+      "path": "VERSION",
+      "name": "VERSION",
+      "kind": "file",
+      "category": "VERSION",
+      "extension": null
+    },
+    {
+      "id": "node_ansible_README_md",
+      "path": "ansible/README.md",
+      "name": "README.md",
+      "kind": "documentation",
+      "category": "ansible",
+      "extension": ".md"
+    },
+    {
+      "id": "node_ansible_inventory_gitkeep",
+      "path": "ansible/inventory/.gitkeep",
+      "name": ".gitkeep",
+      "kind": "file",
+      "category": "ansible",
+      "extension": null
+    },
+    {
+      "id": "node_ansible_playbooks_gitkeep",
+      "path": "ansible/playbooks/.gitkeep",
+      "name": ".gitkeep",
+      "kind": "file",
+      "category": "ansible",
+      "extension": null
+    },
+    {
+      "id": "node_ansible_roles_gitkeep",
+      "path": "ansible/roles/.gitkeep",
+      "name": ".gitkeep",
+      "kind": "file",
+      "category": "ansible",
+      "extension": null
+    },
+    {
+      "id": "node_assets_README_md",
+      "path": "assets/README.md",
+      "name": "README.md",
+      "kind": "documentation",
+      "category": "assets",
+      "extension": ".md"
+    },
+    {
+      "id": "node_assets_diagrams_README_md",
+      "path": "assets/diagrams/README.md",
+      "name": "README.md",
+      "kind": "documentation",
+      "category": "assets",
+      "extension": ".md"
+    },
+    {
+      "id": "node_assets_drawio_README_md",
+      "path": "assets/drawio/README.md",
+      "name": "README.md",
+      "kind": "documentation",
+      "category": "assets",
+      "extension": ".md"
+    },
+    {
+      "id": "node_assets_images_README_md",
+      "path": "assets/images/README.md",
+      "name": "README.md",
+      "kind": "documentation",
+      "category": "assets",
+      "extension": ".md"
+    },
+    {
+      "id": "node_assets_logo_README_md",
+      "path": "assets/logo/README.md",
+      "name": "README.md",
+      "kind": "documentation",
+      "category": "assets",
+      "extension": ".md"
+    },
+    {
+      "id": "node_docs_README_md",
+      "path": "docs/README.md",
+      "name": "README.md",
+      "kind": "documentation",
+      "category": "README.md",
+      "extension": ".md"
+    },
+    {
+      "id": "node_docs_architecture_README_md",
+      "path": "docs/architecture/README.md",
+      "name": "README.md",
+      "kind": "documentation",
+      "category": "architecture",
+      "extension": ".md"
+    },
+    {
+      "id": "node_docs_architecture_repository_graph_md",
+      "path": "docs/architecture/repository-graph.md",
+      "name": "repository-graph.md",
+      "kind": "documentation",
+      "category": "architecture",
+      "extension": ".md"
+    },
+    {
+      "id": "node_docs_benchmarks_README_md",
+      "path": "docs/benchmarks/README.md",
+      "name": "README.md",
+      "kind": "documentation",
+      "category": "benchmarks",
+      "extension": ".md"
+    },
+    {
+      "id": "node_docs_best_practices_README_md",
+      "path": "docs/best-practices/README.md",
+      "name": "README.md",
+      "kind": "documentation",
+      "category": "best-practices",
+      "extension": ".md"
+    },
+    {
+      "id": "node_docs_howto_README_md",
+      "path": "docs/howto/README.md",
+      "name": "README.md",
+      "kind": "documentation",
+      "category": "howto",
+      "extension": ".md"
+    },
+    {
+      "id": "node_docs_howto_windows_ide_sata_to_scsi_md",
+      "path": "docs/howto/windows-ide-sata-to-scsi.md",
+      "name": "windows-ide-sata-to-scsi.md",
+      "kind": "documentation",
+      "category": "howto",
+      "extension": ".md"
+    },
+    {
+      "id": "node_docs_notes_README_md",
+      "path": "docs/notes/README.md",
+      "name": "README.md",
+      "kind": "documentation",
+      "category": "notes",
+      "extension": ".md"
+    },
+    {
+      "id": "node_docs_troubleshooting_README_md",
+      "path": "docs/troubleshooting/README.md",
+      "name": "README.md",
+      "kind": "documentation",
+      "category": "troubleshooting",
+      "extension": ".md"
+    },
+    {
+      "id": "node_examples_README_md",
+      "path": "examples/README.md",
+      "name": "README.md",
+      "kind": "documentation",
+      "category": "examples",
+      "extension": ".md"
+    },
+    {
+      "id": "node_hooks_README_md",
+      "path": "hooks/README.md",
+      "name": "README.md",
+      "kind": "documentation",
+      "category": "hooks",
+      "extension": ".md"
+    },
+    {
+      "id": "node_scripts_README_md",
+      "path": "scripts/README.md",
+      "name": "README.md",
+      "kind": "documentation",
+      "category": "scripts",
+      "extension": ".md"
+    },
+    {
+      "id": "node_scripts_audit_README_md",
+      "path": "scripts/audit/README.md",
+      "name": "README.md",
+      "kind": "documentation",
+      "category": "scripts",
+      "extension": ".md"
+    },
+    {
+      "id": "node_scripts_audit_pve_backup_audit_sh",
+      "path": "scripts/audit/pve-backup-audit.sh",
+      "name": "pve-backup-audit.sh",
+      "kind": "provider",
+      "category": "audit",
+      "extension": ".sh"
+    },
+    {
+      "id": "node_scripts_audit_pve_host_audit_sh",
+      "path": "scripts/audit/pve-host-audit.sh",
+      "name": "pve-host-audit.sh",
+      "kind": "provider",
+      "category": "audit",
+      "extension": ".sh"
+    },
+    {
+      "id": "node_scripts_audit_pve_network_audit_sh",
+      "path": "scripts/audit/pve-network-audit.sh",
+      "name": "pve-network-audit.sh",
+      "kind": "provider",
+      "category": "audit",
+      "extension": ".sh"
+    },
+    {
+      "id": "node_scripts_audit_pve_storage_audit_sh",
+      "path": "scripts/audit/pve-storage-audit.sh",
+      "name": "pve-storage-audit.sh",
+      "kind": "provider",
+      "category": "audit",
+      "extension": ".sh"
+    },
+    {
+      "id": "node_scripts_audit_pve_vm_audit_sh",
+      "path": "scripts/audit/pve-vm-audit.sh",
+      "name": "pve-vm-audit.sh",
+      "kind": "provider",
+      "category": "audit",
+      "extension": ".sh"
+    },
+    {
+      "id": "node_scripts_backup_README_md",
+      "path": "scripts/backup/README.md",
+      "name": "README.md",
+      "kind": "documentation",
+      "category": "scripts",
+      "extension": ".md"
+    },
+    {
+      "id": "node_scripts_bin_check_sh",
+      "path": "scripts/bin/check.sh",
+      "name": "check.sh",
+      "kind": "tooling",
+      "category": "bin",
+      "extension": ".sh"
+    },
+    {
+      "id": "node_scripts_bin_format_all_sh",
+      "path": "scripts/bin/format-all.sh",
+      "name": "format-all.sh",
+      "kind": "tooling",
+      "category": "bin",
+      "extension": ".sh"
+    },
+    {
+      "id": "node_scripts_bin_init_gitkeep_sh",
+      "path": "scripts/bin/init-gitkeep.sh",
+      "name": "init-gitkeep.sh",
+      "kind": "tooling",
+      "category": "bin",
+      "extension": ".sh"
+    },
+    {
+      "id": "node_scripts_bin_init_readme_sh",
+      "path": "scripts/bin/init-readme.sh",
+      "name": "init-readme.sh",
+      "kind": "tooling",
+      "category": "bin",
+      "extension": ".sh"
+    },
+    {
+      "id": "node_scripts_bin_repo_graph_py",
+      "path": "scripts/bin/repo-graph.py",
+      "name": "repo-graph.py",
+      "kind": "tooling",
+      "category": "bin",
+      "extension": ".py"
+    },
+    {
+      "id": "node_scripts_fail2ban_README_md",
+      "path": "scripts/fail2ban/README.md",
+      "name": "README.md",
+      "kind": "documentation",
+      "category": "scripts",
+      "extension": ".md"
+    },
+    {
+      "id": "node_scripts_kernel_README_md",
+      "path": "scripts/kernel/README.md",
+      "name": "README.md",
+      "kind": "documentation",
+      "category": "scripts",
+      "extension": ".md"
+    },
+    {
+      "id": "node_scripts_lib_README_md",
+      "path": "scripts/lib/README.md",
+      "name": "README.md",
+      "kind": "documentation",
+      "category": "scripts",
+      "extension": ".md"
+    },
+    {
+      "id": "node_scripts_lib_colors_sh",
+      "path": "scripts/lib/colors.sh",
+      "name": "colors.sh",
+      "kind": "library",
+      "category": "lib",
+      "extension": ".sh"
+    },
+    {
+      "id": "node_scripts_lib_common_sh",
+      "path": "scripts/lib/common.sh",
+      "name": "common.sh",
+      "kind": "library",
+      "category": "lib",
+      "extension": ".sh"
+    },
+    {
+      "id": "node_scripts_lib_logging_sh",
+      "path": "scripts/lib/logging.sh",
+      "name": "logging.sh",
+      "kind": "library",
+      "category": "lib",
+      "extension": ".sh"
+    },
+    {
+      "id": "node_scripts_lib_output_sh",
+      "path": "scripts/lib/output.sh",
+      "name": "output.sh",
+      "kind": "library",
+      "category": "lib",
+      "extension": ".sh"
+    },
+    {
+      "id": "node_scripts_lib_validation_sh",
+      "path": "scripts/lib/validation.sh",
+      "name": "validation.sh",
+      "kind": "library",
+      "category": "lib",
+      "extension": ".sh"
+    },
+    {
+      "id": "node_scripts_maintenance_README_md",
+      "path": "scripts/maintenance/README.md",
+      "name": "README.md",
+      "kind": "documentation",
+      "category": "scripts",
+      "extension": ".md"
+    },
+    {
+      "id": "node_scripts_migration_README_md",
+      "path": "scripts/migration/README.md",
+      "name": "README.md",
+      "kind": "documentation",
+      "category": "scripts",
+      "extension": ".md"
+    },
+    {
+      "id": "node_scripts_network_README_md",
+      "path": "scripts/network/README.md",
+      "name": "README.md",
+      "kind": "documentation",
+      "category": "scripts",
+      "extension": ".md"
+    },
+    {
+      "id": "node_scripts_proxmox_README_md",
+      "path": "scripts/proxmox/README.md",
+      "name": "README.md",
+      "kind": "documentation",
+      "category": "scripts",
+      "extension": ".md"
+    },
+    {
+      "id": "node_scripts_ssh_README_md",
+      "path": "scripts/ssh/README.md",
+      "name": "README.md",
+      "kind": "documentation",
+      "category": "scripts",
+      "extension": ".md"
+    },
+    {
+      "id": "node_scripts_storage_README_md",
+      "path": "scripts/storage/README.md",
+      "name": "README.md",
+      "kind": "documentation",
+      "category": "scripts",
+      "extension": ".md"
+    },
+    {
+      "id": "node_scripts_tests_README_md",
+      "path": "scripts/tests/README.md",
+      "name": "README.md",
+      "kind": "documentation",
+      "category": "scripts",
+      "extension": ".md"
+    },
+    {
+      "id": "node_scripts_tests_fixtures_README_md",
+      "path": "scripts/tests/fixtures/README.md",
+      "name": "README.md",
+      "kind": "documentation",
+      "category": "scripts",
+      "extension": ".md"
+    },
+    {
+      "id": "node_scripts_vm_README_md",
+      "path": "scripts/vm/README.md",
+      "name": "README.md",
+      "kind": "documentation",
+      "category": "scripts",
+      "extension": ".md"
+    },
+    {
+      "id": "node_scripts_wireguard_README_md",
+      "path": "scripts/wireguard/README.md",
+      "name": "README.md",
+      "kind": "documentation",
+      "category": "scripts",
+      "extension": ".md"
+    },
+    {
+      "id": "node_standards_README_md",
+      "path": "standards/README.md",
+      "name": "README.md",
+      "kind": "standard",
+      "category": "standards",
+      "extension": ".md"
+    },
+    {
+      "id": "node_standards_bash_style_md",
+      "path": "standards/bash-style.md",
+      "name": "bash-style.md",
+      "kind": "standard",
+      "category": "standards",
+      "extension": ".md"
+    },
+    {
+      "id": "node_standards_commit_style_md",
+      "path": "standards/commit-style.md",
+      "name": "commit-style.md",
+      "kind": "standard",
+      "category": "standards",
+      "extension": ".md"
+    },
+    {
+      "id": "node_standards_output_style_md",
+      "path": "standards/output-style.md",
+      "name": "output-style.md",
+      "kind": "standard",
+      "category": "standards",
+      "extension": ".md"
+    },
+    {
+      "id": "node_standards_script_template_sh",
+      "path": "standards/script-template.sh",
+      "name": "script-template.sh",
+      "kind": "shell-script",
+      "category": "standards",
+      "extension": ".sh"
+    },
+    {
+      "id": "node_templates_README_md",
+      "path": "templates/README.md",
+      "name": "README.md",
+      "kind": "documentation",
+      "category": "templates",
+      "extension": ".md"
+    },
+    {
+      "id": "node_templates_cloud_init_README_md",
+      "path": "templates/cloud-init/README.md",
+      "name": "README.md",
+      "kind": "documentation",
+      "category": "templates",
+      "extension": ".md"
+    },
+    {
+      "id": "node_templates_hooks_README_md",
+      "path": "templates/hooks/README.md",
+      "name": "README.md",
+      "kind": "documentation",
+      "category": "templates",
+      "extension": ".md"
+    },
+    {
+      "id": "node_templates_snippets_README_md",
+      "path": "templates/snippets/README.md",
+      "name": "README.md",
+      "kind": "documentation",
+      "category": "templates",
+      "extension": ".md"
+    },
+    {
+      "id": "node_templates_vm_README_md",
+      "path": "templates/vm/README.md",
+      "name": "README.md",
+      "kind": "documentation",
+      "category": "templates",
+      "extension": ".md"
+    }
+  ],
+  "edges": [
+    {
+      "source": "node_README_md",
+      "target": "node_docs_howto_windows_ide_sata_to_scsi_md",
+      "relation": "links_to"
+    },
+    {
+      "source": "node_scripts_audit_pve_backup_audit_sh",
+      "target": "node_scripts_lib_colors_sh",
+      "relation": "uses"
+    },
+    {
+      "source": "node_scripts_audit_pve_backup_audit_sh",
+      "target": "node_scripts_lib_common_sh",
+      "relation": "uses"
+    },
+    {
+      "source": "node_scripts_audit_pve_backup_audit_sh",
+      "target": "node_scripts_lib_logging_sh",
+      "relation": "uses"
+    },
+    {
+      "source": "node_scripts_audit_pve_backup_audit_sh",
+      "target": "node_scripts_lib_output_sh",
+      "relation": "uses"
+    },
+    {
+      "source": "node_scripts_audit_pve_backup_audit_sh",
+      "target": "node_scripts_lib_validation_sh",
+      "relation": "uses"
+    },
+    {
+      "source": "node_scripts_audit_pve_host_audit_sh",
+      "target": "node_scripts_lib_colors_sh",
+      "relation": "uses"
+    },
+    {
+      "source": "node_scripts_audit_pve_host_audit_sh",
+      "target": "node_scripts_lib_common_sh",
+      "relation": "uses"
+    },
+    {
+      "source": "node_scripts_audit_pve_host_audit_sh",
+      "target": "node_scripts_lib_logging_sh",
+      "relation": "uses"
+    },
+    {
+      "source": "node_scripts_audit_pve_host_audit_sh",
+      "target": "node_scripts_lib_output_sh",
+      "relation": "uses"
+    },
+    {
+      "source": "node_scripts_audit_pve_host_audit_sh",
+      "target": "node_scripts_lib_validation_sh",
+      "relation": "uses"
+    },
+    {
+      "source": "node_scripts_audit_pve_network_audit_sh",
+      "target": "node_scripts_lib_colors_sh",
+      "relation": "uses"
+    },
+    {
+      "source": "node_scripts_audit_pve_network_audit_sh",
+      "target": "node_scripts_lib_common_sh",
+      "relation": "uses"
+    },
+    {
+      "source": "node_scripts_audit_pve_network_audit_sh",
+      "target": "node_scripts_lib_logging_sh",
+      "relation": "uses"
+    },
+    {
+      "source": "node_scripts_audit_pve_network_audit_sh",
+      "target": "node_scripts_lib_output_sh",
+      "relation": "uses"
+    },
+    {
+      "source": "node_scripts_audit_pve_network_audit_sh",
+      "target": "node_scripts_lib_validation_sh",
+      "relation": "uses"
+    },
+    {
+      "source": "node_scripts_audit_pve_storage_audit_sh",
+      "target": "node_scripts_lib_colors_sh",
+      "relation": "uses"
+    },
+    {
+      "source": "node_scripts_audit_pve_storage_audit_sh",
+      "target": "node_scripts_lib_common_sh",
+      "relation": "uses"
+    },
+    {
+      "source": "node_scripts_audit_pve_storage_audit_sh",
+      "target": "node_scripts_lib_logging_sh",
+      "relation": "uses"
+    },
+    {
+      "source": "node_scripts_audit_pve_storage_audit_sh",
+      "target": "node_scripts_lib_output_sh",
+      "relation": "uses"
+    },
+    {
+      "source": "node_scripts_audit_pve_storage_audit_sh",
+      "target": "node_scripts_lib_validation_sh",
+      "relation": "uses"
+    },
+    {
+      "source": "node_scripts_audit_pve_vm_audit_sh",
+      "target": "node_scripts_lib_colors_sh",
+      "relation": "uses"
+    },
+    {
+      "source": "node_scripts_audit_pve_vm_audit_sh",
+      "target": "node_scripts_lib_common_sh",
+      "relation": "uses"
+    },
+    {
+      "source": "node_scripts_audit_pve_vm_audit_sh",
+      "target": "node_scripts_lib_logging_sh",
+      "relation": "uses"
+    },
+    {
+      "source": "node_scripts_audit_pve_vm_audit_sh",
+      "target": "node_scripts_lib_output_sh",
+      "relation": "uses"
+    },
+    {
+      "source": "node_scripts_audit_pve_vm_audit_sh",
+      "target": "node_scripts_lib_validation_sh",
+      "relation": "uses"
+    },
+    {
+      "source": "node_standards_script_template_sh",
+      "target": "node_scripts_lib_colors_sh",
+      "relation": "uses"
+    },
+    {
+      "source": "node_standards_script_template_sh",
+      "target": "node_scripts_lib_logging_sh",
+      "relation": "uses"
+    },
+    {
+      "source": "node_standards_script_template_sh",
+      "target": "node_scripts_lib_output_sh",
+      "relation": "uses"
+    },
+    {
+      "source": "node_standards_script_template_sh",
+      "target": "node_scripts_lib_validation_sh",
+      "relation": "uses"
+    }
+  ]
+}
