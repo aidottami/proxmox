@@ -137,3 +137,7 @@ The host audit currently expects:
 ## Status
 
 The project is under active development. Scripts should be reviewed and tested before use on production systems.
+
+## Version
+
+Current version: `0.1.0`
