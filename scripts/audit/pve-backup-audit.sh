@@ -45,7 +45,7 @@ USAGE
 parse_args() {
     while (($# > 0)); do
         case "$1" in
-            -h|--help)
+            -h | --help)
                 usage
                 exit 0
                 ;;
@@ -96,7 +96,7 @@ main() {
     )
 
     recent_successes=$(
-         journalctl --since '7 days ago' --no-pager 2>/dev/null |
+        journalctl --since '7 days ago' --no-pager 2>/dev/null |
             grep -Eic 'vzdump.*(success|finished)|backup.*(success|finished)'
     )
 

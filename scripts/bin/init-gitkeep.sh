@@ -21,7 +21,7 @@ done < <(
         -print0
 )
 
-if (( count == 0 )); then
+if ((count == 0)); then
     echo "Nessuna directory vuota trovata."
 else
     echo "Creati $count file .gitkeep."

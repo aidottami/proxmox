@@ -45,7 +45,7 @@ USAGE
 parse_args() {
     while (($# > 0)); do
         case "$1" in
-            -h|--help)
+            -h | --help)
                 usage
                 exit 0
                 ;;
@@ -67,7 +67,7 @@ require_dependencies() {
 
 main() {
     local storage_output filesystem_output
-    local name status pct pct_num    
+    local name status pct pct_num
     local warning_count=0 error_count=0
 
     parse_args "$@"
@@ -80,18 +80,18 @@ main() {
     storage_output=$(pvesm status)
     printf '%s\n' "$storage_output"
 
-    while read -r name _type status _total _used _avail pct; do    
+    while read -r name _type status _total _used _avail pct; do
         [[ "$name" == "Name" || -z "$name" ]] && continue
         pct_num=${pct%\%}
 
         if [[ "$status" != "active" ]]; then
-            ((error_count+=1))
+            ((error_count += 1))
         elif [[ "$pct_num" =~ ^[0-9]+$ ]] && ((pct_num >= 90)); then
-            ((error_count+=1))
+            ((error_count += 1))
         elif [[ "$pct_num" =~ ^[0-9]+$ ]] && ((pct_num >= 80)); then
-            ((warning_count+=1))
+            ((warning_count += 1))
         fi
-    done <<< "$storage_output"
+    done <<<"$storage_output"
 
     print_section "FILESYSTEMS"
     filesystem_output=$(df -hPT -x tmpfs -x devtmpfs -x efivarfs -x fuse)
@@ -101,7 +101,7 @@ main() {
     if command -v zpool >/dev/null 2>&1 && zpool list -H >/dev/null 2>&1; then
         zpool status -x
         if ! zpool status -x | grep -q 'all pools are healthy'; then
-            ((error_count+=1))
+            ((error_count += 1))
         fi
     else
         printf 'ZFS not detected.\n'

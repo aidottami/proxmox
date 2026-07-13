@@ -1,23 +1,20 @@
 #!/usr/bin/env bash
 
-
 set -e
-
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
 
 cd "$REPO_ROOT"
 
-
 declare -A DESC=(
-  ["."]="Repository dedicato a Proxmox VE: script, documentazione, template e automazioni."
-  ["scripts"]="Script Bash e strumenti di automazione."
-  ["docs"]="Documentazione tecnica, how-to e note operative."
-  ["templates"]="Template e configurazioni riutilizzabili."
-  ["ansible"]="Playbook, ruoli e inventory Ansible."
-  ["hooks"]="Hook script per Proxmox."
-  ["examples"]="Esempi di configurazione e utilizzo."
+    ["."]="Repository dedicato a Proxmox VE: script, documentazione, template e automazioni."
+    ["scripts"]="Script Bash e strumenti di automazione."
+    ["docs"]="Documentazione tecnica, how-to e note operative."
+    ["templates"]="Template e configurazioni riutilizzabili."
+    ["ansible"]="Playbook, ruoli e inventory Ansible."
+    ["hooks"]="Hook script per Proxmox."
+    ["examples"]="Esempi di configurazione e utilizzo."
 )
 
 for dir in "${!DESC[@]}"; do
@@ -27,7 +24,7 @@ for dir in "${!DESC[@]}"; do
         title=$(basename "$dir")
         [[ "$dir" == "." ]] && title="Proxmox"
 
-        cat > "$file" <<EOF
+        cat >"$file" <<EOF
 # $title
 
 ${DESC[$dir]}
@@ -38,4 +35,3 @@ EOF
         echo "Esiste già: $file"
     fi
 done
-

@@ -45,7 +45,7 @@ USAGE
 parse_args() {
     while (($# > 0)); do
         case "$1" in
-            -h|--help)
+            -h | --help)
                 usage
                 exit 0
                 ;;
@@ -96,40 +96,40 @@ main() {
 
     for vmid in "${vmids[@]}"; do
         config=$(qm config "$vmid")
-        name=$(awk -F': ' '/^name:/ {print $2; exit}' <<< "$config")
+        name=$(awk -F': ' '/^name:/ {print $2; exit}' <<<"$config")
         [[ -z "$name" ]] && name="-"
 
-        mapfile -t net_lines < <(grep -E '^net[0-9]+:' <<< "$config" || true)
+        mapfile -t net_lines < <(grep -E '^net[0-9]+:' <<<"$config" || true)
 
         if ((${#net_lines[@]} == 0)); then
             printf '%-6s %-28s %-12s %-18s %-10s %-8s\n' \
                 "$vmid" "$name" "none" "-" "-" "-"
-            ((no_nic_count+=1))
-            ((vm_total+=1))
+            ((no_nic_count += 1))
+            ((vm_total += 1))
             continue
         fi
 
         for line in "${net_lines[@]}"; do
-            model=$(sed -E 's/^net[0-9]+: ([^=,]+).*/\1/' <<< "$line")
-            bridge=$(sed -nE 's/.*bridge=([^,]+).*/\1/p' <<< "$line")
-            firewall=$(sed -nE 's/.*firewall=([^,]+).*/\1/p' <<< "$line")
-            queues=$(sed -nE 's/.*queues=([^,]+).*/\1/p' <<< "$line")
+            model=$(sed -E 's/^net[0-9]+: ([^=,]+).*/\1/' <<<"$line")
+            bridge=$(sed -nE 's/.*bridge=([^,]+).*/\1/p' <<<"$line")
+            firewall=$(sed -nE 's/.*firewall=([^,]+).*/\1/p' <<<"$line")
+            queues=$(sed -nE 's/.*queues=([^,]+).*/\1/p' <<<"$line")
 
             [[ -z "$bridge" ]] && bridge="-"
             [[ -z "$firewall" ]] && firewall="0"
             [[ -z "$queues" ]] && queues="1"
 
             if [[ "$model" == "virtio" ]]; then
-                ((virtio_count+=1))
+                ((virtio_count += 1))
             else
-                ((non_virtio_count+=1))
+                ((non_virtio_count += 1))
             fi
 
             printf '%-6s %-28s %-12s %-18s %-10s %-8s\n' \
                 "$vmid" "$name" "$model" "$bridge" "$firewall" "$queues"
         done
 
-        ((vm_total+=1))
+        ((vm_total += 1))
     done
 
     print_section "SUMMARY"

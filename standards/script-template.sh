@@ -45,7 +45,7 @@ USAGE
 parse_args() {
     while (($# > 0)); do
         case "$1" in
-            -h|--help)
+            -h | --help)
                 usage
                 exit 0
                 ;;

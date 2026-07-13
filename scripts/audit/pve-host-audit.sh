@@ -52,7 +52,7 @@ USAGE
 parse_args() {
     while (($# > 0)); do
         case "$1" in
-            -h|--help)
+            -h | --help)
                 usage
                 exit 0
                 ;;
@@ -104,7 +104,7 @@ print_rows() {
     printf '%-6s %-30s %s\n' "-----" "------------------------------" "------------------------"
 
     for row in "${rows[@]}"; do
-        IFS='|' read -r vmid name detail <<< "$row"
+        IFS='|' read -r vmid name detail <<<"$row"
         printf '%-6s %-30s %s\n' "$vmid" "$name" "${detail:-}"
     done
 }
@@ -142,19 +142,19 @@ audit_vms() {
 
     for vmid in "${vmids[@]}"; do
         [[ -z "$vmid" ]] && continue
-        ((vm_total+=1))
+        ((vm_total += 1))
 
         config=$(qm config "$vmid" 2>/dev/null || true)
-        name=$(awk -F': ' '/^name:/ {print $2; exit}' <<< "$config")
+        name=$(awk -F': ' '/^name:/ {print $2; exit}' <<<"$config")
         [[ -z "$name" ]] && name="-"
 
         disk_lines=$(
-            grep -E '^(ide|sata|scsi|virtio)[0-9]+:' <<< "$config" |
+            grep -E '^(ide|sata|scsi|virtio)[0-9]+:' <<<"$config" |
                 grep -vE 'media=cdrom|cloudinit' || true
         )
 
         disks=$(
-            cut -d: -f1 <<< "$disk_lines" |
+            cut -d: -f1 <<<"$disk_lines" |
                 sed '/^$/d' |
                 paste -sd ',' -
         )
@@ -165,51 +165,51 @@ audit_vms() {
         has_sata=0
         has_ide=0
 
-        grep -qE '^scsi[0-9]+:' <<< "$disk_lines" && has_scsi=1
-        grep -qE '^virtio[0-9]+:' <<< "$disk_lines" && has_virtio=1
-        grep -qE '^sata[0-9]+:' <<< "$disk_lines" && has_sata=1
-        grep -qE '^ide[0-9]+:' <<< "$disk_lines" && has_ide=1
+        grep -qE '^scsi[0-9]+:' <<<"$disk_lines" && has_scsi=1
+        grep -qE '^virtio[0-9]+:' <<<"$disk_lines" && has_virtio=1
+        grep -qE '^sata[0-9]+:' <<<"$disk_lines" && has_sata=1
+        grep -qE '^ide[0-9]+:' <<<"$disk_lines" && has_ide=1
 
         if ((has_sata || has_ide)); then
-            ((vm_legacy_disk+=1))
+            ((vm_legacy_disk += 1))
             legacy_disk_rows+=("$vmid|$name|$disks")
         elif ((has_scsi && has_virtio)); then
-            ((vm_mixed_scsi_virtio+=1))
+            ((vm_mixed_scsi_virtio += 1))
             mixed_disk_rows+=("$vmid|$name|$disks")
         elif ((has_virtio)); then
-            ((vm_virtio_block+=1))
+            ((vm_virtio_block += 1))
             virtio_block_rows+=("$vmid|$name|$disks")
         elif ((has_scsi)); then
-            ((vm_scsi+=1))
+            ((vm_scsi += 1))
         else
-            ((vm_no_disk+=1))
+            ((vm_no_disk += 1))
         fi
 
-        machine=$(awk -F': ' '/^machine:/ {print $2; exit}' <<< "$config")
-        if grep -qi 'q35' <<< "$machine"; then
-            ((vm_q35+=1))
+        machine=$(awk -F': ' '/^machine:/ {print $2; exit}' <<<"$config")
+        if grep -qi 'q35' <<<"$machine"; then
+            ((vm_q35 += 1))
         else
-            ((vm_i440fx+=1))
+            ((vm_i440fx += 1))
             legacy_machine_rows+=("$vmid|$name|${machine:-default/i440fx}")
         fi
 
-        bios=$(awk -F': ' '/^bios:/ {print $2; exit}' <<< "$config")
+        bios=$(awk -F': ' '/^bios:/ {print $2; exit}' <<<"$config")
         [[ -z "$bios" ]] && bios="seabios"
 
         if [[ "$bios" == "ovmf" ]]; then
-            ((vm_ovmf+=1))
+            ((vm_ovmf += 1))
         else
-            ((vm_seabios+=1))
+            ((vm_seabios += 1))
             legacy_bios_rows+=("$vmid|$name|$bios")
         fi
 
-        mapfile -t nets < <(grep -E '^net[0-9]+:' <<< "$config" || true)
+        mapfile -t nets < <(grep -E '^net[0-9]+:' <<<"$config" || true)
 
         if ((${#nets[@]} == 0)); then
-            ((vm_non_virtio_net+=1))
+            ((vm_non_virtio_net += 1))
             non_virtio_net_rows+=("$vmid|$name|no NIC")
         elif printf '%s\n' "${nets[@]}" | grep -qvE '^net[0-9]+: virtio='; then
-            ((vm_non_virtio_net+=1))
+            ((vm_non_virtio_net += 1))
             models=$(
                 printf '%s\n' "${nets[@]}" |
                     sed -E 's/^net[0-9]+: ([^=,]+).*/\1/' |
@@ -217,14 +217,14 @@ audit_vms() {
             )
             non_virtio_net_rows+=("$vmid|$name|$models")
         else
-            ((vm_virtio_net+=1))
+            ((vm_virtio_net += 1))
         fi
 
-        agent=$(awk -F': ' '/^agent:/ {print $2; exit}' <<< "$config")
+        agent=$(awk -F': ' '/^agent:/ {print $2; exit}' <<<"$config")
         if [[ "$agent" =~ ^1([,]|$) ]]; then
-            ((vm_agent_enabled+=1))
+            ((vm_agent_enabled += 1))
         else
-            ((vm_agent_disabled+=1))
+            ((vm_agent_disabled += 1))
             agent_disabled_rows+=("$vmid|$name")
         fi
     done
@@ -252,7 +252,7 @@ audit_storage() {
             if [[ "$pct_num" =~ ^[0-9]+$ ]] && ((pct_num >= 90)); then
                 storage_problem=1
             fi
-        done <<< "$storage_usage"
+        done <<<"$storage_usage"
     fi
 }
 
@@ -260,25 +260,25 @@ calculate_score() {
     score=100
 
     if ((boot_usage >= 85)); then
-        ((score-=20))
+        ((score -= 20))
     elif ((boot_usage >= 70)); then
-        ((score-=8))
+        ((score -= 8))
     fi
 
     legacy_penalty=$((vm_legacy_disk * 3))
     ((legacy_penalty > 15)) && legacy_penalty=15
-    ((score-=legacy_penalty))
+    ((score -= legacy_penalty))
 
     net_penalty=$((vm_non_virtio_net * 2))
     ((net_penalty > 10)) && net_penalty=10
-    ((score-=net_penalty))
+    ((score -= net_penalty))
 
     agent_penalty=$vm_agent_disabled
     ((agent_penalty > 5)) && agent_penalty=5
-    ((score-=agent_penalty))
+    ((score -= agent_penalty))
 
-    ((zfs_problem > 0)) && ((score-=25))
-    ((storage_problem > 0)) && ((score-=15))
+    ((zfs_problem > 0)) && ((score -= 25))
+    ((storage_problem > 0)) && ((score -= 15))
     ((score < 0)) && score=0
 }
 

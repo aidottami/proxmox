@@ -45,7 +45,7 @@ USAGE
 parse_args() {
     while (($# > 0)); do
         case "$1" in
-            -h|--help)
+            -h | --help)
                 usage
                 exit 0
                 ;;
@@ -91,11 +91,11 @@ main() {
 
     for vmid in "${vmids[@]}"; do
         config=$(qm config "$vmid")
-        name=$(awk -F': ' '/^name:/ {print $2; exit}' <<< "$config")
+        name=$(awk -F': ' '/^name:/ {print $2; exit}' <<<"$config")
         [[ -z "$name" ]] && name="-"
 
         mapfile -t disk_lines < <(
-            grep -E '^(ide|sata|scsi|virtio)[0-9]+:' <<< "$config" |
+            grep -E '^(ide|sata|scsi|virtio)[0-9]+:' <<<"$config" |
                 grep -vE 'media=cdrom|cloudinit' || true
         )
 
@@ -118,59 +118,59 @@ main() {
         printf '%s\n' "${disk_lines[@]}" | grep -qE '^virtio[0-9]+:' && has_virtio=1 || true
 
         if ((has_ide || has_sata)); then
-            ((legacy+=1))
+            ((legacy += 1))
         elif ((has_scsi && has_virtio)); then
-            ((mixed+=1))
+            ((mixed += 1))
         elif ((has_virtio)); then
-            ((virtio_block+=1))
+            ((virtio_block += 1))
         elif ((has_scsi)); then
-            ((scsi+=1))
+            ((scsi += 1))
         else
-            ((no_disk+=1))
+            ((no_disk += 1))
         fi
 
-        machine=$(awk -F': ' '/^machine:/ {print $2; exit}' <<< "$config")
-        if grep -qi q35 <<< "$machine"; then
-            ((q35+=1))
+        machine=$(awk -F': ' '/^machine:/ {print $2; exit}' <<<"$config")
+        if grep -qi q35 <<<"$machine"; then
+            ((q35 += 1))
             machine="q35"
         else
-            ((i440fx+=1))
+            ((i440fx += 1))
             machine="i440fx"
         fi
 
-        bios=$(awk -F': ' '/^bios:/ {print $2; exit}' <<< "$config")
+        bios=$(awk -F': ' '/^bios:/ {print $2; exit}' <<<"$config")
         [[ -z "$bios" ]] && bios="seabios"
         if [[ "$bios" == "ovmf" ]]; then
-            ((ovmf+=1))
+            ((ovmf += 1))
         else
-            ((seabios+=1))
+            ((seabios += 1))
         fi
 
-        mapfile -t nets < <(grep -E '^net[0-9]+:' <<< "$config" || true)
+        mapfile -t nets < <(grep -E '^net[0-9]+:' <<<"$config" || true)
         if ((${#nets[@]} == 0)); then
             net="none"
-            ((non_virtio_net+=1))
+            ((non_virtio_net += 1))
         elif printf '%s\n' "${nets[@]}" | grep -qvE '^net[0-9]+: virtio='; then
             net="non-virtio"
-            ((non_virtio_net+=1))
+            ((non_virtio_net += 1))
         else
             net="virtio"
-            ((virtio_net+=1))
+            ((virtio_net += 1))
         fi
 
-        agent=$(awk -F': ' '/^agent:/ {print $2; exit}' <<< "$config")
+        agent=$(awk -F': ' '/^agent:/ {print $2; exit}' <<<"$config")
         if [[ "$agent" =~ ^1([,]|$) ]]; then
             agent="enabled"
-            ((agent_on+=1))
+            ((agent_on += 1))
         else
             agent="disabled"
-            ((agent_off+=1))
+            ((agent_off += 1))
         fi
 
         printf '%-6s %-28s %-18s %-10s %-10s %-12s %-10s\n' \
             "$vmid" "$name" "$disks" "$machine" "$bios" "$net" "$agent"
 
-        ((total+=1))
+        ((total += 1))
     done
 
     print_section "SUMMARY"
