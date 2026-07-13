@@ -86,6 +86,7 @@ mapfile -t rc_kernels < <(
 vm_total=0
 vm_scsi=0
 vm_virtio_block=0
+vm_mixed_scsi_virtio=0
 vm_legacy_disk=0
 vm_no_disk=0
 vm_q35=0
@@ -99,6 +100,7 @@ vm_agent_disabled=0
 
 legacy_disk_rows=()
 virtio_block_rows=()
+mixed_disk_rows=()
 legacy_machine_rows=()
 legacy_bios_rows=()
 non_virtio_net_rows=()
@@ -139,6 +141,9 @@ for vmid in "${vmids[@]}"; do
     if (( has_sata || has_ide )); then
         ((vm_legacy_disk+=1))
         legacy_disk_rows+=("$vmid|$name|$disks")
+    elif (( has_scsi && has_virtio )); then
+        ((vm_mixed_scsi_virtio+=1))
+        mixed_disk_rows+=("$vmid|$name|$disks")
     elif (( has_virtio )); then
         ((vm_virtio_block+=1))
         virtio_block_rows+=("$vmid|$name|$disks")
@@ -216,15 +221,27 @@ if [[ -n "$storage_usage" ]]; then
 fi
 
 score=100
-(( boot_usage >= 85 )) && ((score-=15))
-(( boot_usage >= 70 && boot_usage < 85 )) && ((score-=5))
-(( vm_legacy_disk > 0 )) && ((score-=vm_legacy_disk*3))
-(( vm_i440fx > 0 )) && ((score-=vm_i440fx))
-(( vm_seabios > 0 )) && ((score-=vm_seabios))
-(( vm_non_virtio_net > 0 )) && ((score-=vm_non_virtio_net*2))
-(( vm_agent_disabled > 0 )) && ((score-=vm_agent_disabled))
-(( zfs_problem > 0 )) && ((score-=15))
-(( storage_problem > 0 )) && ((score-=10))
+
+if (( boot_usage >= 85 )); then
+    ((score-=20))
+elif (( boot_usage >= 70 )); then
+    ((score-=8))
+fi
+
+legacy_penalty=$((vm_legacy_disk * 3))
+(( legacy_penalty > 15 )) && legacy_penalty=15
+((score-=legacy_penalty))
+
+net_penalty=$((vm_non_virtio_net * 2))
+(( net_penalty > 10 )) && net_penalty=10
+((score-=net_penalty))
+
+agent_penalty=$vm_agent_disabled
+(( agent_penalty > 5 )) && agent_penalty=5
+((score-=agent_penalty))
+
+(( zfs_problem > 0 )) && ((score-=25))
+(( storage_problem > 0 )) && ((score-=15))
 (( score < 0 )) && score=0
 
 printf "%s============================================================%s\n" "$BLUE" "$RESET"
@@ -291,6 +308,7 @@ print_rows() {
 
 print_rows "VM con dischi IDE/SATA" "${legacy_disk_rows[@]}"
 print_rows "VM con VirtIO Block" "${virtio_block_rows[@]}"
+print_rows "VM con SCSI + VirtIO Block" "${mixed_disk_rows[@]}"
 print_rows "VM i440FX/default" "${legacy_machine_rows[@]}"
 print_rows "VM SeaBIOS" "${legacy_bios_rows[@]}"
 print_rows "VM con NIC non VirtIO" "${non_virtio_net_rows[@]}"
@@ -305,6 +323,7 @@ else
 fi
 
 section "SCORE"
+echo "Nota: SeaBIOS, i440FX, VirtIO Block e pacchetti rc sono informativi e non riducono il punteggio."
 if (( score >= 90 )); then
     score_mark=$(ok)
 elif (( score >= 75 )); then
