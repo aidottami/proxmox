@@ -30,8 +30,8 @@ echo "Formatting Bash scripts"
 echo "============================================================"
 echo
 
-kwhile IFS= read -r -d '' file; do
-    echo "Formatting: ${file#$REPO_ROOT/}"
+while IFS= read -r -d '' file; do
+    echo "Formatting: ${file#"$REPO_ROOT"/}"
     shfmt -w -i 4 -ci "$file"
 done < <(
     find "$REPO_ROOT" \
