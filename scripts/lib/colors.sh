@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC2034
+#
+# This file is a sourced library. The color variables are consumed by
+# other scripts after sourcing and therefore appear unused to ShellCheck
+# when this file is checked in isolation.
 
 if [[ -t 1 && -z "${NO_COLOR:-}" ]]; then
     readonly COLOR_RED=$'\033[31m'
