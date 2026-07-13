@@ -4,6 +4,7 @@ set -o pipefail
 
 # pve-host-audit.sh
 # Read-only audit for a Proxmox VE host.
+# Project: https://github.com/aidottami/proxmox
 # Run as root from any directory:
 #   bash pve-host-audit.sh
 #
